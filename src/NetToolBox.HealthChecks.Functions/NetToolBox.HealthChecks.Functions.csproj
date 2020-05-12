@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <nullable>enable</nullable>
+    <RepositoryUrl>https://github.com/npnelson/HealthChecks</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Description>Collection of useful healthcheck accessories, especially for Azure Functions</Description>
+    <Authors>npnelson</Authors>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30105.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B0628B1C-605B-4D83-BFFD-A78C03F598E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{BC33CA66-8B23-44D1-A54A-8030D5DDA89E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetToolBox.HealthChecks.Functions", "src\NetToolBox.HealthChecks.Functions\NetToolBox.HealthChecks.Functions.csproj", "{1467A6CD-72BC-4888-A33D-451C5F7ED1FE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{930B7481-973B-4BD1-963A-F68F2E2678AE}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.yml = azure-pipelines.yml
+		GitVersion.yml = GitVersion.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetToolBox.HealthChecks.Tests", "test\NetToolBox.HealthChecks.Tests\NetToolBox.HealthChecks.Tests.csproj", "{4A594380-B497-4329-AFC8-9814D084BB26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetToolBox.HealthChecks.Functions.TestHarness", "test\NetToolBox.HealthChecks.Functions.TestHarness\NetToolBox.HealthChecks.Functions.TestHarness.csproj", "{3452E88C-3771-483A-943D-529CA74769EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1467A6CD-72BC-4888-A33D-451C5F7ED1FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1467A6CD-72BC-4888-A33D-451C5F7ED1FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1467A6CD-72BC-4888-A33D-451C5F7ED1FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1467A6CD-72BC-4888-A33D-451C5F7ED1FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A594380-B497-4329-AFC8-9814D084BB26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A594380-B497-4329-AFC8-9814D084BB26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A594380-B497-4329-AFC8-9814D084BB26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A594380-B497-4329-AFC8-9814D084BB26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3452E88C-3771-483A-943D-529CA74769EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3452E88C-3771-483A-943D-529CA74769EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3452E88C-3771-483A-943D-529CA74769EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3452E88C-3771-483A-943D-529CA74769EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1467A6CD-72BC-4888-A33D-451C5F7ED1FE} = {B0628B1C-605B-4D83-BFFD-A78C03F598E5}
+		{4A594380-B497-4329-AFC8-9814D084BB26} = {BC33CA66-8B23-44D1-A54A-8030D5DDA89E}
+		{3452E88C-3771-483A-943D-529CA74769EA} = {BC33CA66-8B23-44D1-A54A-8030D5DDA89E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C23674F5-9025-4BD5-A5F2-714D6DA4F621}
+	EndGlobalSection
+EndGlobal
