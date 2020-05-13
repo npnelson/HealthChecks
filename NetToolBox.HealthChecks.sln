@@ -15,9 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		GitVersion.yml = GitVersion.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetToolBox.HealthChecks.Tests", "test\NetToolBox.HealthChecks.Tests\NetToolBox.HealthChecks.Tests.csproj", "{4A594380-B497-4329-AFC8-9814D084BB26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetToolBox.HealthChecks.Tests", "test\NetToolBox.HealthChecks.Tests\NetToolBox.HealthChecks.Tests.csproj", "{4A594380-B497-4329-AFC8-9814D084BB26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetToolBox.HealthChecks.Functions.TestHarness", "test\NetToolBox.HealthChecks.Functions.TestHarness\NetToolBox.HealthChecks.Functions.TestHarness.csproj", "{3452E88C-3771-483A-943D-529CA74769EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetToolBox.HealthChecks.Functions.TestHarness", "test\NetToolBox.HealthChecks.Functions.TestHarness\NetToolBox.HealthChecks.Functions.TestHarness.csproj", "{3452E88C-3771-483A-943D-529CA74769EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
