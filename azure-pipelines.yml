@@ -3,7 +3,8 @@ trigger:
 - '*'
 stages:
 - stage: Build
-  pool: Default    
+  pool:
+    vmImage: 'ubuntu-latest'
   variables:   
     buildConfiguration: Release   
   jobs:
