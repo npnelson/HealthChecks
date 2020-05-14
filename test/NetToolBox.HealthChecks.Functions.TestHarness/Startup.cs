@@ -10,7 +10,11 @@ namespace NetToolBox.HealthChecks.Functions.TestHarness
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
-            builder.Services.AddFunctionsHealthChecks();
+
+
+            builder.Services.AddFunctionsHealthChecks().AddServiceBusHealthCheck<ServiceBusTriggerFunction>();
+
+
 
         }
     }

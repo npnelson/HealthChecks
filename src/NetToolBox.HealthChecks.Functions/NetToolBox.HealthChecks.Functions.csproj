@@ -15,4 +15,8 @@
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.7" />    
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NetToolBox.HealthChecks.Core\NetToolBox.HealthChecks.Core.csproj" />
+  </ItemGroup>
+
 </Project>

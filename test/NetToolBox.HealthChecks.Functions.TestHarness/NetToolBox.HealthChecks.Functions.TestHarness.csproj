@@ -10,6 +10,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\NetToolBox.HealthChecks.Functions\NetToolBox.HealthChecks.Functions.csproj" />
+    <ProjectReference Include="..\..\src\NetToolBox.HealthChecks.ServiceBus\NetToolBox.HealthChecks.ServiceBus.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">

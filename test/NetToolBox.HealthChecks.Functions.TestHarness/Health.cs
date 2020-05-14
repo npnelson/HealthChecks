@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using NetToolBox.HealthChecks.Core;
 using System.Threading.Tasks;
 
 namespace NetToolBox.HealthChecks.Functions.TestHarness
@@ -17,7 +18,7 @@ namespace NetToolBox.HealthChecks.Functions.TestHarness
         }
         [FunctionName("Health")]
         public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req
+            [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req
             )
         {
             var healthReport = await _healthCheckService.CheckHealthAsync();
