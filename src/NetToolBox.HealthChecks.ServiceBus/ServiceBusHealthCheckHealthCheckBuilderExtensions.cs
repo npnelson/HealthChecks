@@ -3,6 +3,7 @@ using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using NetToolBox.HealthChecks.ServiceBus;
+using System;
 using System.Linq;
 using System.Reflection;
 
@@ -24,6 +25,7 @@ namespace Microsoft.Extensions.DependencyInjection
             var config = sp.GetRequiredService<IConfiguration>();
 
             var assem = Assembly.GetAssembly(typeof(T));
+            if (assem == null) throw new InvalidOperationException("Could not find assembly for type. This should never happen");
             var connections = assem.GetTypes().SelectMany(x => x.GetMethods()).SelectMany(x => x.GetParameters()).SelectMany(x => x.GetCustomAttributes<ServiceBusTriggerAttribute>()).Select(x => new ServiceBusConnection { ServiceBusConnectionString = config.GetWebJobsConnectionString(x.Connection), QueueName = nm.ResolveWholeString(x.QueueName) }).ToList();
 
 

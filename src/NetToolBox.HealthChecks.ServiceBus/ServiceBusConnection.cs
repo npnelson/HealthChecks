@@ -2,7 +2,7 @@
 {
     internal sealed class ServiceBusConnection
     {
-        public string ServiceBusConnectionString { get; set; }
-        public string QueueName { get; set; }
+        public string ServiceBusConnectionString { get; set; } = null!;
+        public string QueueName { get; set; } = null!;
     }
 }
