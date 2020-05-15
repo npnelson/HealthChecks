@@ -8,8 +8,10 @@
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.7" />
     <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.0.0" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="4.1.1" />
+    <PackageReference Include="NetToolBox.BlobStorage.Azure" Version="0.1.8" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\NetToolBox.HealthChecks.BlobStorage\NetToolBox.HealthChecks.BlobStorage.csproj" />
     <ProjectReference Include="..\..\src\NetToolBox.HealthChecks.Functions\NetToolBox.HealthChecks.Functions.csproj" />
     <ProjectReference Include="..\..\src\NetToolBox.HealthChecks.ServiceBus\NetToolBox.HealthChecks.ServiceBus.csproj" />
   </ItemGroup>

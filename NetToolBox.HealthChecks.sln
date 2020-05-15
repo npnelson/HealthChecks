@@ -19,9 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetToolBox.HealthChecks.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetToolBox.HealthChecks.Functions.TestHarness", "test\NetToolBox.HealthChecks.Functions.TestHarness\NetToolBox.HealthChecks.Functions.TestHarness.csproj", "{3452E88C-3771-483A-943D-529CA74769EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetToolBox.HealthChecks.Core", "src\NetToolBox.HealthChecks.Core\NetToolBox.HealthChecks.Core.csproj", "{316955C2-1A9C-46BF-839A-AA35D8A90230}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetToolBox.HealthChecks.Core", "src\NetToolBox.HealthChecks.Core\NetToolBox.HealthChecks.Core.csproj", "{316955C2-1A9C-46BF-839A-AA35D8A90230}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetToolBox.HealthChecks.ServiceBus", "src\NetToolBox.HealthChecks.ServiceBus\NetToolBox.HealthChecks.ServiceBus.csproj", "{C1366BCE-6750-4CFA-995A-8308E7327630}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetToolBox.HealthChecks.ServiceBus", "src\NetToolBox.HealthChecks.ServiceBus\NetToolBox.HealthChecks.ServiceBus.csproj", "{C1366BCE-6750-4CFA-995A-8308E7327630}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetToolBox.HealthChecks.BlobStorage", "src\NetToolBox.HealthChecks.BlobStorage\NetToolBox.HealthChecks.BlobStorage.csproj", "{DDFC11D5-6F58-4CDE-8A0D-F75F180D5546}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{C1366BCE-6750-4CFA-995A-8308E7327630}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1366BCE-6750-4CFA-995A-8308E7327630}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1366BCE-6750-4CFA-995A-8308E7327630}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDFC11D5-6F58-4CDE-8A0D-F75F180D5546}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDFC11D5-6F58-4CDE-8A0D-F75F180D5546}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDFC11D5-6F58-4CDE-8A0D-F75F180D5546}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDFC11D5-6F58-4CDE-8A0D-F75F180D5546}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 		{3452E88C-3771-483A-943D-529CA74769EA} = {BC33CA66-8B23-44D1-A54A-8030D5DDA89E}
 		{316955C2-1A9C-46BF-839A-AA35D8A90230} = {B0628B1C-605B-4D83-BFFD-A78C03F598E5}
 		{C1366BCE-6750-4CFA-995A-8308E7327630} = {B0628B1C-605B-4D83-BFFD-A78C03F598E5}
+		{DDFC11D5-6F58-4CDE-8A0D-F75F180D5546} = {B0628B1C-605B-4D83-BFFD-A78C03F598E5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C23674F5-9025-4BD5-A5F2-714D6DA4F621}

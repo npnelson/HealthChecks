@@ -12,8 +12,10 @@ namespace NetToolBox.HealthChecks.Functions.TestHarness
         {
 
 
-            builder.Services.AddFunctionsHealthChecks().AddServiceBusHealthCheck<ServiceBusTriggerFunction>();
+            //   builder.Services.AddFunctionsHealthChecks().AddServiceBusHealthCheck<ServiceBusTriggerFunction>();
+            //builder.Services.AddBlobStorageFactory(new System.Collections.Generic.List<(string accountName, string containerName)> { ("teststorage", "testcontainer") });
 
+            builder.Services.AddFunctionsHealthChecks().AddBlobStorageHealthChecks();
 
 
         }
