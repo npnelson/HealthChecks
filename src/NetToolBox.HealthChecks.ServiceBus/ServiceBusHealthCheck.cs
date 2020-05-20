@@ -28,7 +28,7 @@ namespace NetToolBox.HealthChecks.ServiceBus
             {
                 foreach (var connection in _connections)
                 {
-                    var messageCount = await _messageCountDetails.GetMessageCountDetailsAsync(connection.ServiceBusConnectionString, connection.QueueName);
+                    var messageCount = await _messageCountDetails.GetMessageCountDetailsAsync(connection.ServiceBusConnectionString, connection.QueueName).ConfigureAwait(false);
 
                     itemDictionary.Add($"{connection.ServiceBusConnectionString}:{connection.QueueName}", new ServiceBusConnectionHealthResult { ActiveMessageCount = messageCount.ActiveMessageCount, DeadLetterMessageCount = messageCount.DeadLetterMessageCount });
                 }

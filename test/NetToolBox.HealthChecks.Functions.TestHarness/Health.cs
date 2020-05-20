@@ -15,12 +15,14 @@ namespace NetToolBox.HealthChecks.Functions.TestHarness
         public Health(HealthCheckService healthCheckService)
         {
             _healthCheckService = healthCheckService;
+
         }
         [FunctionName("Health")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req
             )
         {
+
             var healthReport = await _healthCheckService.CheckHealthAsync();
             return HealthReportObjectResult.GetHealthReportObjectResult(healthReport);
         }
