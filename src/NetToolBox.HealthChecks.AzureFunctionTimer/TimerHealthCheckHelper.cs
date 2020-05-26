@@ -26,7 +26,7 @@ namespace NetToolBox.HealthChecks.AzureFunctionTimer
         /// </summary>
         /// <typeparam name="T">The Type of your timertrigger</typeparam>
         /// <returns></returns>
-        public async Task CheckpointMethod<T>()
+        public async Task CheckpointMethodAsync<T>()
         {
 
             var blobContainer = _blobStorageFactory.GetBlobStorage(_options.AzureWebJobsStorageConnectionString, "azure-webjobs-hosts");
