@@ -9,7 +9,7 @@
     <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.0.0" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="4.1.1" />
     <PackageReference Include="morelinq" Version="3.3.2" />
-    <PackageReference Include="NetToolBox.BlobStorage.Azure" Version="0.1.11" />
+    <PackageReference Include="NetToolBox.BlobStorage.Azure" Version="0.1.13" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\NetToolBox.HealthChecks.AzureFunctionTimer\NetToolBox.HealthChecks.AzureFunctionTimer.csproj" />
