@@ -24,7 +24,7 @@ namespace NetToolBox.HealthChecks.Functions.TestHarness
         {
 
             var healthReport = await _healthCheckService.CheckHealthAsync();
-            return HealthReportObjectResult.GetHealthReportObjectResult(healthReport);
+            return HealthReportObjectResult.GetHealthReportObjectResult<Startup>(healthReport);
         }
     }
 }

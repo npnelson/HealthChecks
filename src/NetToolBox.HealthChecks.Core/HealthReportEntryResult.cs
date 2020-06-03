@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace NetToolBox.HealthChecks.Core
 {
-    public sealed class HealthReportEntryResult
+    public sealed class HealthReportEntryResult<T>
     {
 
 
@@ -16,7 +16,7 @@ namespace NetToolBox.HealthChecks.Core
             Duration = entry.Duration;
             Exception = entry.Exception;
             Tags = entry.Tags;
-            Status = HealthReportResult.GetHealthStatusString(entry.Status);
+            Status = HealthReportResult<T>.GetHealthStatusString(entry.Status);
         }
 
         public readonly IReadOnlyDictionary<string, object> Data;
