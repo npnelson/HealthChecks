@@ -50,7 +50,7 @@ namespace NetToolBox.HealthChecks.AzureFunctionTimer
                         itemDictionary.Add(trigger.TimerFullTypeName, new TimerTriggerHealthResult { LastCompletionTime = status.LastCheckpoint, LastExpectedCompletionTime = new DateTimeOffset(lastExpectedTime, status.LastCheckpoint.Offset) });
                     }
                 }
-                if (itemDictionary.Values.Any(x => !((TimerTriggerHealthResult)x).IsTimerDisabled && (((TimerTriggerHealthResult)x).LastCompletionTime + _options.ToleranceTimeSpan) < ((TimerTriggerHealthResult)x).LastExpectedCompletionTime)
+                if (itemDictionary.Values.Any(x => !((TimerTriggerHealthResult)x).IsTimerDisabled && (((TimerTriggerHealthResult)x).LastCompletionTime + _options.ToleranceTimeSpan) < ((TimerTriggerHealthResult)x).LastExpectedCompletionTime))
                 {
                     retval = new HealthCheckResult(HealthStatus.Unhealthy, "Some timers have not fired on time", null, itemDictionary);
                 }
