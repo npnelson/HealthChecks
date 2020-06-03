@@ -36,18 +36,23 @@ namespace NetToolBox.HealthChecks.AzureFunctionTimer
             {
                 foreach (var trigger in _timerTriggers)
                 {
-
-                    //get last execution completion time
-                    var blobPath = TimerHealthCheckHelper.GetBlobPath(trigger.TimerFullTypeName, _helperOptions);
-                    var lastTimeString = await _blobStorage.DownloadFileAsTextAsync(blobPath).ConfigureAwait(false);
-                    TimerHealthCheckStatus status = JsonSerializer.Deserialize<TimerHealthCheckStatus>(lastTimeString);
-                    var lastExpectedTime = GetLastScheduledOccurrence(trigger.ScheduleExpression, _dateTimeService.CurrentDateTimeOffset.DateTime);
-                    itemDictionary.Add(trigger.TimerFullTypeName, new TimerTriggerHealthResult { LastCompletionTime = status.LastCheckpoint, LastExpectedCompletionTime = new DateTimeOffset(lastExpectedTime, status.LastCheckpoint.Offset) });
+                    if (trigger.IsTimerDisabled)
+                    {
+                        itemDictionary.Add(trigger.TimerFullTypeName, new TimerTriggerHealthResult { LastCompletionTime = DateTime.MinValue, LastExpectedCompletionTime = DateTime.MinValue, IsTimerDisabled = true });
+                    }
+                    else
+                    {
+                        //get last execution completion time
+                        var blobPath = TimerHealthCheckHelper.GetBlobPath(trigger.TimerFullTypeName, _helperOptions);
+                        var lastTimeString = await _blobStorage.DownloadFileAsTextAsync(blobPath).ConfigureAwait(false);
+                        TimerHealthCheckStatus status = JsonSerializer.Deserialize<TimerHealthCheckStatus>(lastTimeString);
+                        var lastExpectedTime = GetLastScheduledOccurrence(trigger.ScheduleExpression, _dateTimeService.CurrentDateTimeOffset.DateTime);
+                        itemDictionary.Add(trigger.TimerFullTypeName, new TimerTriggerHealthResult { LastCompletionTime = status.LastCheckpoint, LastExpectedCompletionTime = new DateTimeOffset(lastExpectedTime, status.LastCheckpoint.Offset) });
+                    }
                 }
-                if (itemDictionary.Values.Any(x => (((TimerTriggerHealthResult)x).LastCompletionTime + _options.ToleranceTimeSpan) < ((TimerTriggerHealthResult)x).LastExpectedCompletionTime))
+                if (itemDictionary.Values.Any(x => (((TimerTriggerHealthResult)x).LastCompletionTime + _options.ToleranceTimeSpan) < ((TimerTriggerHealthResult)x).LastExpectedCompletionTime && !((TimerTriggerHealthResult)x).IsTimerDisabled))
                 {
                     retval = new HealthCheckResult(HealthStatus.Unhealthy, "Some timers have not fired on time", null, itemDictionary);
-
                 }
                 else
                 {

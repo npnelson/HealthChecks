@@ -57,7 +57,10 @@ namespace Microsoft.Extensions.DependencyInjection
             var types = assem.GetTypes().Where(x => x.GetMethods().SelectMany(x => x.GetParameters()).Any(x => x.GetCustomAttribute<TimerTriggerAttribute>() != null));
             foreach (Type type in types)
             {
-                var trigger = type.GetMethods().SelectMany(x => x.GetParameters()).SelectMany(x => x.GetCustomAttributes<TimerTriggerAttribute>()).Select(x => new TimerTriggerInfo { TimerFullTypeName = type.FullName ?? string.Empty, ScheduleExpression = x.ScheduleExpression }).Single();
+                var functionName = type.GetMethods().Select(x => x.GetCustomAttribute<FunctionNameAttribute>()).Single(x => x != null);
+                var trigger = type.GetMethods().SelectMany(x => x.GetParameters()).SelectMany(x => x.GetCustomAttributes<TimerTriggerAttribute>()).Select(x => new TimerTriggerInfo { TimerFullTypeName = type.FullName ?? string.Empty, ScheduleExpression = x.ScheduleExpression, IsTimerDisabled = Environment.GetEnvironmentVariable($"APPSETTING_AzureWebJobs_{functionName!.Name}_disabled") == "1" }).Single();
+
+
                 timerTriggerInfos.Add(trigger);
             }
 

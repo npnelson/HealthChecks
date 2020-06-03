@@ -6,5 +6,6 @@ namespace NetToolBox.HealthChecks.AzureFunctionTimer
     {
         public DateTimeOffset LastCompletionTime { get; set; }
         public DateTimeOffset LastExpectedCompletionTime { get; set; }
+        public bool IsTimerDisabled { get; set; }
     }
 }
