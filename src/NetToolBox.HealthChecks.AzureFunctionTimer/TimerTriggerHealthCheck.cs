@@ -38,7 +38,7 @@ namespace NetToolBox.HealthChecks.AzureFunctionTimer
                 {
                     if (trigger.IsTimerDisabled)
                     {
-                        itemDictionary.Add(trigger.TimerFullTypeName, new TimerTriggerHealthResult { LastCompletionTime = DateTime.MinValue, LastExpectedCompletionTime = DateTime.MinValue, IsTimerDisabled = true });
+                        itemDictionary.Add(trigger.TimerTriggerFriendlyName, new TimerTriggerHealthResult { LastCompletionTime = DateTime.MinValue, LastExpectedCompletionTime = DateTime.MinValue, IsTimerDisabled = true });
                     }
                     else
                     {
@@ -47,7 +47,7 @@ namespace NetToolBox.HealthChecks.AzureFunctionTimer
                         var lastTimeString = await _blobStorage.DownloadFileAsTextAsync(blobPath).ConfigureAwait(false);
                         TimerHealthCheckStatus status = JsonSerializer.Deserialize<TimerHealthCheckStatus>(lastTimeString);
                         var lastExpectedTime = GetLastScheduledOccurrence(trigger.ScheduleExpression, _dateTimeService.CurrentDateTimeOffset.DateTime);
-                        itemDictionary.Add(trigger.TimerFullTypeName, new TimerTriggerHealthResult { LastCompletionTime = status.LastCheckpoint, LastExpectedCompletionTime = new DateTimeOffset(lastExpectedTime, status.LastCheckpoint.Offset) });
+                        itemDictionary.Add(trigger.TimerTriggerFriendlyName, new TimerTriggerHealthResult { LastCompletionTime = status.LastCheckpoint, LastExpectedCompletionTime = new DateTimeOffset(lastExpectedTime, status.LastCheckpoint.Offset) });
                     }
                 }
                 if (itemDictionary.Values.Any(x => !((TimerTriggerHealthResult)x).IsTimerDisabled && (((TimerTriggerHealthResult)x).LastCompletionTime + _options.ToleranceTimeSpan) < ((TimerTriggerHealthResult)x).LastExpectedCompletionTime))
