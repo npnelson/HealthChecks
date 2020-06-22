@@ -12,8 +12,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions" Version="3.0.6" />
-    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="3.1.4" />
-    <PackageReference Include="NetToolBox.BlobStorage.Azure" Version="0.1.15" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="3.1.5" />
+    <PackageReference Include="NetToolBox.BlobStorage.Azure" Version="0.1.16" />
     <PackageReference Include="NetToolBox.DateTimeService" Version="0.1.4" />
     <PackageReference Include="morelinq" Version="3.3.2" />
   </ItemGroup>
