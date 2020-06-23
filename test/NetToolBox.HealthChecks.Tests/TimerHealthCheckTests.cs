@@ -30,12 +30,12 @@ namespace NetToolBox.HealthChecks.Tests
         public async Task OutsideToleranceTest()
         {
             var fixture = new TimerHealthCheckTestFixture();
-            fixture.TestDateTimeServiceProvider.SetCurrentDateTimeUTC(new DateTime(2020, 6, 23, 9, 5, 1, 0));
-            fixture.SetLastCompletedTime(new DateTime(2020, 6, 23, 8, 0, 0, 0));
+            fixture.TestDateTimeServiceProvider.SetCurrentDateTimeUTC(new DateTime(2020, 11, 23, 9, 5, 1, 0));
+            fixture.SetLastCompletedTime(new DateTime(2020, 11, 23, 8, 0, 0, 0));
 
             var result = await fixture.HealthCheck.CheckHealthAsync(new HealthCheckContext());
             result.Status.Should().Be(HealthStatus.Unhealthy);
-            result.Description.Should().StartWith("Timer TimerFriendlyName did not fire on time - LastCompletedTime = 6/23/2020 08:00:00 -04:00 Last Expected Time = 6/23/2020 09:00:00 -04:00");
+            result.Description.Should().Be("Timer TimerFriendlyName did not fire on time - LastCompletedTime = 11/23/2020 08:00:00 -05:00 Last Expected Time = 11/23/2020 09:00:00 -05:00\n");
         }
 
         internal sealed class TimerHealthCheckTestFixture
