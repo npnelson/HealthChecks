@@ -30,7 +30,7 @@ namespace NetToolBox.HealthChecks.Tests
         public async Task OutsideToleranceTest()
         {
             var fixture = new TimerHealthCheckTestFixture();
-            fixture.TestDateTimeServiceProvider.SetCurrentDateTimeUTC(new DateTime(2020, 11, 23, 9, 5, 1, 0));
+            fixture.TestDateTimeServiceProvider.SetCurrentDateTimeOffSet(new DateTimeOffset(2020, 11, 23, 9, 5, 1, TimeSpan.Zero));
             fixture.SetLastCompletedTime(new DateTime(2020, 11, 23, 8, 0, 0, 0));
 
             var result = await fixture.HealthCheck.CheckHealthAsync(new HealthCheckContext());
