@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -52,15 +53,16 @@ namespace NetToolBox.HealthChecks.AzureFunctionTimer
                         itemDictionary.Add(trigger.TimerTriggerFriendlyName, new TimerTriggerHealthResult { LastCompletionTime = status.LastCheckpoint, LastExpectedCompletionTime = new DateTimeOffset(lastExpectedTime, status.LastCheckpoint.Offset) });
                     }
                 }
-                var badTimers = itemDictionary.Values.Where(x => !((TimerTriggerHealthResult)x).IsTimerDisabled && ((((TimerTriggerHealthResult)x).LastCompletionTime) < ((TimerTriggerHealthResult)x).LastExpectedCompletionTime) && _dateTimeService.CurrentDateTimeUTC > ((TimerTriggerHealthResult)x).LastExpectedCompletionTime + _options.ToleranceTimeSpan).ToList();
+                var badTimers = itemDictionary.Where(x => !((TimerTriggerHealthResult)x.Value).IsTimerDisabled && ((((TimerTriggerHealthResult)x.Value).LastCompletionTime) < ((TimerTriggerHealthResult)x.Value).LastExpectedCompletionTime) && _dateTimeService.CurrentDateTimeUTC > ((TimerTriggerHealthResult)x.Value).LastExpectedCompletionTime + _options.ToleranceTimeSpan).Select(x => new { TimerName = x.Key, Result = x.Value as TimerTriggerHealthResult }).ToList();
                 if (badTimers.Any())
                 {
-                    //var sb = new StringBuilder();
-                    //foreach (var item in badTimers)
-                    //{ 
-                    //  sb.Append(
-                    //}
-                    retval = new HealthCheckResult(HealthStatus.Unhealthy, "Some timers have not fired on time", null, itemDictionary); //Timer {TimerName} did not fire on time - LastCompletionTime = {} LastExpected={}
+                    var sb = new StringBuilder();
+                    foreach (var item in badTimers)
+                    {
+                        sb.Append($"Timer {item.TimerName} did not fire on time - LastCompletedTime = {item.Result!.LastCompletionTime} Last Expected Time = {item.Result!.LastExpectedCompletionTime}");
+                        sb.Append("\r\n");
+                    }
+                    retval = new HealthCheckResult(HealthStatus.Unhealthy, sb.ToString(), null, itemDictionary);
                 }
                 else
                 {
