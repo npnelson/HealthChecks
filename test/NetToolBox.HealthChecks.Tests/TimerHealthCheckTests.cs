@@ -20,8 +20,8 @@ namespace NetToolBox.HealthChecks.Tests
         public async Task WithinToleranceTest()
         {
             var fixture = new TimerHealthCheckTestFixture();
-            fixture.TestDateTimeServiceProvider.SetCurrentDateTimeUTC(new DateTime(2020, 6, 23, 9, 5, 0, 0));
-            fixture.SetLastCompletedTime(new DateTime(2020, 6, 23, 8, 0, 0, 0));
+            fixture.TestDateTimeServiceProvider.SetCurrentDateTimeOffSet(new DateTimeOffset(2020, 6, 23, 9, 5, 0, TimeSpan.Zero));
+            fixture.SetLastCompletedTime(new DateTimeOffset(2020, 6, 23, 8, 0, 0, TimeSpan.Zero));
 
             var result = await fixture.HealthCheck.CheckHealthAsync(new HealthCheckContext());
             result.Status.Should().Be(HealthStatus.Healthy);
@@ -31,11 +31,11 @@ namespace NetToolBox.HealthChecks.Tests
         {
             var fixture = new TimerHealthCheckTestFixture();
             fixture.TestDateTimeServiceProvider.SetCurrentDateTimeOffSet(new DateTimeOffset(2020, 11, 23, 9, 5, 1, TimeSpan.Zero));
-            fixture.SetLastCompletedTime(new DateTime(2020, 11, 23, 8, 0, 0, 0));
+            fixture.SetLastCompletedTime(new DateTimeOffset(2020, 11, 23, 8, 0, 0, TimeSpan.Zero));
 
             var result = await fixture.HealthCheck.CheckHealthAsync(new HealthCheckContext());
             result.Status.Should().Be(HealthStatus.Unhealthy);
-            result.Description.Should().Be("Timer TimerFriendlyName did not fire on time - LastCompletedTime = 11/23/2020 08:00:00 -05:00 Last Expected Time = 11/23/2020 09:00:00 -05:00\n");
+            result.Description.Should().Be("Timer TimerFriendlyName did not fire on time - LastCompletedTime = 11/23/2020 08:00:00 +00:00 Last Expected Time = 11/23/2020 09:00:00 +00:00\n");
         }
 
         internal sealed class TimerHealthCheckTestFixture
@@ -47,7 +47,7 @@ namespace NetToolBox.HealthChecks.Tests
             public TimerHealthCheckHelperOptions HelperOptions = new TimerHealthCheckHelperOptions { IsProductionSlot = true, AzureWebSiteName = "TestWebSite", AzureWebJobsStorageConnectionString = "ConnectionString" };
 
             private readonly Mock<IBlobStorage> MockBlobStorage = new Mock<IBlobStorage>();
-            public void SetLastCompletedTime(DateTime dateTime)
+            public void SetLastCompletedTime(DateTimeOffset dateTime)
             {
                 var blobPath = TimerHealthCheckHelper.GetBlobPath(TimerTriggerInfos.Single().TimerFullTypeName, HelperOptions);
                 var status = new TimerHealthCheckStatus { LastCheckpoint = dateTime };

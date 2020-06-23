@@ -53,7 +53,7 @@ namespace NetToolBox.HealthChecks.AzureFunctionTimer
                         itemDictionary.Add(trigger.TimerTriggerFriendlyName, new TimerTriggerHealthResult { LastCompletionTime = status.LastCheckpoint, LastExpectedCompletionTime = new DateTimeOffset(lastExpectedTime, status.LastCheckpoint.Offset) });
                     }
                 }
-                var badTimers = itemDictionary.Where(x => !((TimerTriggerHealthResult)x.Value).IsTimerDisabled && ((((TimerTriggerHealthResult)x.Value).LastCompletionTime) < ((TimerTriggerHealthResult)x.Value).LastExpectedCompletionTime) && _dateTimeService.CurrentDateTimeUTC > ((TimerTriggerHealthResult)x.Value).LastExpectedCompletionTime + _options.ToleranceTimeSpan).Select(x => new { TimerName = x.Key, Result = x.Value as TimerTriggerHealthResult }).ToList();
+                var badTimers = itemDictionary.Where(x => !((TimerTriggerHealthResult)x.Value).IsTimerDisabled && ((((TimerTriggerHealthResult)x.Value).LastCompletionTime) < ((TimerTriggerHealthResult)x.Value).LastExpectedCompletionTime) && _dateTimeService.CurrentDateTimeOffset > ((TimerTriggerHealthResult)x.Value).LastExpectedCompletionTime + _options.ToleranceTimeSpan).Select(x => new { TimerName = x.Key, Result = x.Value as TimerTriggerHealthResult }).ToList();
                 if (badTimers.Any())
                 {
                     var sb = new StringBuilder();
