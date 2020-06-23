@@ -4,13 +4,16 @@ using NETToolBox.BlobStorage.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using static NetToolBox.HealthChecks.AzureFunctionTimer.NcronTabExtensions;
-
+[assembly: InternalsVisibleTo("NetToolBox.HealthChecks.Tests")]
 namespace NetToolBox.HealthChecks.AzureFunctionTimer
 {
+
     internal sealed class TimerTriggerHealthCheck : IHealthCheck
     {
         private readonly IDateTimeService _dateTimeService;
@@ -50,9 +53,16 @@ namespace NetToolBox.HealthChecks.AzureFunctionTimer
                         itemDictionary.Add(trigger.TimerTriggerFriendlyName, new TimerTriggerHealthResult { LastCompletionTime = status.LastCheckpoint, LastExpectedCompletionTime = new DateTimeOffset(lastExpectedTime, status.LastCheckpoint.Offset) });
                     }
                 }
-                if (itemDictionary.Values.Any(x => !((TimerTriggerHealthResult)x).IsTimerDisabled && (((TimerTriggerHealthResult)x).LastCompletionTime + _options.ToleranceTimeSpan) < ((TimerTriggerHealthResult)x).LastExpectedCompletionTime))
+                var badTimers = itemDictionary.Where(x => !((TimerTriggerHealthResult)x.Value).IsTimerDisabled && ((((TimerTriggerHealthResult)x.Value).LastCompletionTime) < ((TimerTriggerHealthResult)x.Value).LastExpectedCompletionTime) && _dateTimeService.CurrentDateTimeOffset > ((TimerTriggerHealthResult)x.Value).LastExpectedCompletionTime + _options.ToleranceTimeSpan).Select(x => new { TimerName = x.Key, Result = x.Value as TimerTriggerHealthResult }).ToList();
+                if (badTimers.Any())
                 {
-                    retval = new HealthCheckResult(HealthStatus.Unhealthy, "Some timers have not fired on time", null, itemDictionary);
+                    var sb = new StringBuilder();
+                    foreach (var item in badTimers)
+                    {
+                        sb.Append($"Timer {item.TimerName} did not fire on time - LastCompletedTime = {item.Result!.LastCompletionTime} Last Expected Time = {item.Result!.LastExpectedCompletionTime}");
+                        sb.Append("\n");
+                    }
+                    retval = new HealthCheckResult(HealthStatus.Unhealthy, sb.ToString(), null, itemDictionary);
                 }
                 else
                 {
