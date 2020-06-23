@@ -60,7 +60,7 @@ namespace NetToolBox.HealthChecks.AzureFunctionTimer
                     foreach (var item in badTimers)
                     {
                         sb.Append($"Timer {item.TimerName} did not fire on time - LastCompletedTime = {item.Result!.LastCompletionTime} Last Expected Time = {item.Result!.LastExpectedCompletionTime}");
-                        sb.Append("\r\n");
+                        sb.Append("\n");
                     }
                     retval = new HealthCheckResult(HealthStatus.Unhealthy, sb.ToString(), null, itemDictionary);
                 }

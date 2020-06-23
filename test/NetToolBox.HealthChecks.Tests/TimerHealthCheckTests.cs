@@ -35,7 +35,7 @@ namespace NetToolBox.HealthChecks.Tests
 
             var result = await fixture.HealthCheck.CheckHealthAsync(new HealthCheckContext());
             result.Status.Should().Be(HealthStatus.Unhealthy);
-            result.Description.Should().Be("Timer TimerFriendlyName did not fire on time - LastCompletedTime = 6/23/2020 08:00:00 -04:00 Last Expected Time = 6/23/2020 09:00:00 -04:00\r\n");
+            result.Description.Should().Be("Timer TimerFriendlyName did not fire on time - LastCompletedTime = 6/23/2020 08:00:00 -04:00 Last Expected Time = 6/23/2020 09:00:00 -04:00\n");
         }
 
         internal sealed class TimerHealthCheckTestFixture
