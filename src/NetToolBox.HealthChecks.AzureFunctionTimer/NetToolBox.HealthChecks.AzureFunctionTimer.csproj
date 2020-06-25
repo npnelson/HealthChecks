@@ -8,12 +8,19 @@
     <Authors>npnelson</Authors>
     <IsPackable>true</IsPackable>
     <nullable>enable</nullable>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions" Version="3.0.6" />
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="3.1.5" />
-    <PackageReference Include="NetToolBox.BlobStorage.Azure" Version="0.1.16" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="NetToolBox.BlobStorage.Azure" Version="0.1.17" />
     <PackageReference Include="NetToolBox.DateTimeService" Version="0.1.5" />
     <PackageReference Include="morelinq" Version="3.3.2" />
   </ItemGroup>

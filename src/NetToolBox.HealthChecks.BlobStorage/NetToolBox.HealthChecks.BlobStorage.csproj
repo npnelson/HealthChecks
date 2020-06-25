@@ -8,12 +8,19 @@
     <Description>Collection of useful healthcheck accessories, especially for Azure Functions</Description>
     <Authors>npnelson</Authors>
     <IsPackable>true</IsPackable>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.5" />
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="3.1.5" />
-    <PackageReference Include="NETToolBox.BlobStorage.Abstractions" Version="0.1.16" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="NETToolBox.BlobStorage.Abstractions" Version="0.1.17" />
   </ItemGroup>
 
 </Project>
