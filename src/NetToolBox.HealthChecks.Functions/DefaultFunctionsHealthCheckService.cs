@@ -197,7 +197,7 @@ namespace NetToolBox.HealthChecks.Functions
                 "Running health check {HealthCheckName}");
 
             // These are separate so they can have different log levels
-            private static readonly string HealthCheckEndText = "Health check {HealthCheckName} completed after {ElapsedMilliseconds}ms with status {HealthStatus} and description '{HealthCheckDescription}'";
+            private const string HealthCheckEndText = "Health check {HealthCheckName} completed after {ElapsedMilliseconds}ms with status {HealthStatus} and description '{HealthCheckDescription}'";
 
             private static readonly Action<ILogger, string, double, HealthStatus, string, Exception?> _healthCheckEndHealthy = LoggerMessage.Define<string, double, HealthStatus, string>(
                 LogLevel.Debug,
@@ -210,11 +210,6 @@ namespace NetToolBox.HealthChecks.Functions
                 HealthCheckEndText);
 
             private static readonly Action<ILogger, string, double, HealthStatus, string, Exception?> _healthCheckEndUnhealthy = LoggerMessage.Define<string, double, HealthStatus, string>(
-                LogLevel.Error,
-                EventIds.HealthCheckEnd,
-                HealthCheckEndText);
-
-            private static readonly Action<ILogger, string, double, HealthStatus, string, Exception> _healthCheckEndFailed = LoggerMessage.Define<string, double, HealthStatus, string>(
                 LogLevel.Error,
                 EventIds.HealthCheckEnd,
                 HealthCheckEndText);

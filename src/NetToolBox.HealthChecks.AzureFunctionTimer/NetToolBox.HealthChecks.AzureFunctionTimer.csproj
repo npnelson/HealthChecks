@@ -20,8 +20,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="NetToolBox.BlobStorage.Azure" Version="0.1.17" />
-    <PackageReference Include="NetToolBox.DateTimeService" Version="0.1.5" />
+    <PackageReference Include="NetToolBox.BlobStorage.Azure" Version="0.1.18" />
+    <PackageReference Include="NetToolBox.DateTimeService" Version="0.1.6" />
     <PackageReference Include="morelinq" Version="3.3.2" />
   </ItemGroup>
 

@@ -21,6 +21,7 @@ namespace NetToolBox.HealthChecks.Core
         internal HealthReportResult(HealthReport healthReport)
         {
             Status = GetHealthStatusString(healthReport.Status);
+            MachineName = Environment.MachineName;
             ApplicationVersion = _version;
             CLRVersion = RuntimeInformation.FrameworkDescription;
             OSVersion = RuntimeInformation.OSDescription;
@@ -41,6 +42,7 @@ namespace NetToolBox.HealthChecks.Core
             Results = resultDictionary;
         }
         public readonly string Status;
+        public readonly string MachineName;
         public readonly string ApplicationVersion;
         public readonly string CLRVersion;
         public readonly string OSVersion;
