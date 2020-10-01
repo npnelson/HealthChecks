@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 using NetToolBox.Search.Abstractions;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -26,7 +27,7 @@ namespace NetToolBox.HealthChecks.Search
 #pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception ex)
             {
-                return new HealthCheckResult(HealthStatus.Unhealthy, "ListIndexesAsync threw Exception", ex, null);
+                return new HealthCheckResult(HealthStatus.Unhealthy, "ListIndexesAsync threw Exception", ex, new Dictionary<string, object> { { "Search", ex.ToString() } });
             }
 #pragma warning restore CA1031 // Do not catch general exception types
         }
