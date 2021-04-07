@@ -26,6 +26,7 @@ namespace NetToolBox.HealthChecks.Tests
             var result = await fixture.HealthCheck.CheckHealthAsync(new HealthCheckContext());
             result.Status.Should().Be(HealthStatus.Healthy);
         }
+
         [Fact]
         public async Task OutsideToleranceTest()
         {
@@ -35,7 +36,7 @@ namespace NetToolBox.HealthChecks.Tests
 
             var result = await fixture.HealthCheck.CheckHealthAsync(new HealthCheckContext());
             result.Status.Should().Be(HealthStatus.Unhealthy);
-            result.Description.Should().Be("Timer TimerFriendlyName did not fire on time - LastCompletedTime = 11/23/2020 08:00:00 +00:00 Last Expected Time = 11/23/2020 09:00:00 +00:00\n");
+            result.Description.Should().Be("Timer TimerFriendlyName did not fire on time - LastCompletedTime = 11/23/2020 8:00:00 AM +00:00 Last Expected Time = 11/23/2020 9:00:00 AM +00:00\n");
         }
 
         internal sealed class TimerHealthCheckTestFixture
@@ -47,19 +48,18 @@ namespace NetToolBox.HealthChecks.Tests
             public TimerHealthCheckHelperOptions HelperOptions = new TimerHealthCheckHelperOptions { IsProductionSlot = true, AzureWebSiteName = "TestWebSite", AzureWebJobsStorageConnectionString = "ConnectionString" };
 
             private readonly Mock<IBlobStorage> MockBlobStorage = new Mock<IBlobStorage>();
+
             public void SetLastCompletedTime(DateTimeOffset dateTime)
             {
                 var blobPath = TimerHealthCheckHelper.GetBlobPath(TimerTriggerInfos.Single().TimerFullTypeName, HelperOptions);
                 var status = new TimerHealthCheckStatus { LastCheckpoint = dateTime };
                 MockBlobStorage.Setup(x => x.DownloadFileAsTextAsync(It.Is<string>(y => y == blobPath), It.IsAny<CancellationToken>())).ReturnsAsync(JsonSerializer.Serialize(status));
-
             }
+
             public TimerHealthCheckTestFixture()
             {
                 MockBlobStorageFactory.Setup(x => x.GetBlobStorage(It.Is<string>(y => y == HelperOptions.AzureWebJobsStorageConnectionString), It.Is<string>(y => y == "azure-webjobs-hosts"), It.IsAny<bool>())).Returns(MockBlobStorage.Object);
                 HealthCheck = new TimerTriggerHealthCheck(MockBlobStorageFactory.Object, TestDateTimeServiceProvider, new TimerTriggerHealthCheckOptions { ToleranceTimeSpan = TimeSpan.FromMinutes(5) }, HelperOptions, TimerTriggerInfos);
-
-
             }
         }
     }

@@ -29,6 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetToolBox.HealthChecks.Azu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetToolBox.HealthChecks.Search", "src\NetToolBox.HealthChecks.Search\NetToolBox.HealthChecks.Search.csproj", "{CE3B8845-60AF-4A49-B898-33C32632F096}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".config", ".config", "{B3EB7F31-EAE4-4B49-AE68-CE2630987BA2}"
+	ProjectSection(SolutionItems) = preProject
+		.config\dotnet-tools.json = .config\dotnet-tools.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,6 +85,7 @@ Global
 		{DDFC11D5-6F58-4CDE-8A0D-F75F180D5546} = {B0628B1C-605B-4D83-BFFD-A78C03F598E5}
 		{07C8A6F0-0E18-4F94-8930-54ED6B0999DD} = {B0628B1C-605B-4D83-BFFD-A78C03F598E5}
 		{CE3B8845-60AF-4A49-B898-33C32632F096} = {B0628B1C-605B-4D83-BFFD-A78C03F598E5}
+		{B3EB7F31-EAE4-4B49-AE68-CE2630987BA2} = {930B7481-973B-4BD1-963A-F68F2E2678AE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C23674F5-9025-4BD5-A5F2-714D6DA4F621}
